@@ -1,12 +1,23 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
-import { ThemeProvider } from "styled-components";
-import { GlobalStyle, theme } from "./styles";
-import { Home } from "./pages";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
+import GeographyLeft from "./GeographyLeft";
+import GeographyRight from "./GeographyRight";
+import GeoMain from "./GeoMain";
+
+const K = {
+  Container: styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: #fbfbfb;
+    display: flex;
+    color: #ccc;
+    letter-spacing: 4px;
+  `,
+};
 const COORDS = "coords";
 
-function App() {
+const Geography = () => {
   const [currentLatLong, setCurrentLatLong] = useState(0);
 
   /* navigator.geolocation.getCurrentPosition 수락했을경우 */
@@ -43,20 +54,22 @@ function App() {
       setCurrentLatLong(parseCoords);
     }
   };
+
   useEffect(() => {
     loadCoords();
+    console.log("a");
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Home />
-      {/* <Geography
+    <K.Container>
+      <GeographyLeft />
+      <GeoMain
         currentLatitude={currentLatLong.latitude}
-        currentLontitude={currentLatLong.longitude}
-      /> */}
-    </ThemeProvider>
+        currentLongitude={currentLatLong.longitude}
+      />
+      <GeographyRight />
+    </K.Container>
   );
-}
+};
 
-export default App;
+export default Geography;
