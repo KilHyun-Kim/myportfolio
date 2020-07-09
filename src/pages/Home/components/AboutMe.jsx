@@ -100,14 +100,14 @@ const AboutMe = () => {
           <K.RightH1>My Technic</K.RightH1>
         </K.RightH1Block>
         <K.ImgBlock {...useScrollFadeIn("up", 1, 0.7)}>
-          <img src={developer} />
-          <img src={developer} />
-          <img src={developer} />
+          <img src={developer} alt="1" />
+          <img src={developer} alt="1" />
+          <img src={developer} alt="1" />
         </K.ImgBlock>
         <K.ImgBlock {...useScrollFadeIn("up", 1, 0.9)}>
-          <img src={developer} />
-          <img src={developer} />
-          <img src={developer} />
+          <img src={developer} alt="1" />
+          <img src={developer} alt="1" />
+          <img src={developer} alt="1" />
         </K.ImgBlock>
       </K.RightWrapper>
     </K.Wrapper>

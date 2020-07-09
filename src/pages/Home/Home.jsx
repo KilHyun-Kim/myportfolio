@@ -1,5 +1,5 @@
 import React from "react";
-import { About, Geography, Weather } from "./components";
+import { About, Geography, Project } from "./components";
 import styled from "styled-components";
 
 const TestDiv = styled.div`
@@ -10,10 +10,10 @@ const TestDiv = styled.div`
 const Home = () => {
   return (
     <>
-      <TestDiv />
+      {/* <TestDiv /> */}
       <About />
       <Geography />
-      {/* <Weather /> */}
+      <Project />
     </>
   );
 };
