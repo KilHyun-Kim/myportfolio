@@ -34,10 +34,6 @@ const Project = () => {
   };
   return (
     <Pro.Container>
-      {/* <Pro.Header {...animatedItem[0]}>
-        <h1>project</h1>
-        <Pro.BlackLine />
-      </Pro.Header> */}
       <Pro.ItemWrapper>
         <ProjectItem />
       </Pro.ItemWrapper>

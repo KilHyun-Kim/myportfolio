@@ -51,6 +51,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Home />
+
       {/* <Geography
         currentLatitude={currentLatLong.latitude}
         currentLontitude={currentLatLong.longitude}

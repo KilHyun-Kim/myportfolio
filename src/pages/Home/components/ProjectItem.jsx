@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import idea from "../../../images/idea.png";
+import mayday from "../../../images/smilemaydayicon.png";
+import workroom8363 from "../../../images/workroom8363.png";
+import koreaColormap from "../../../images/koreaColormap.gif";
 import ProjectItemProps from "./ProjectItemProps";
+import dog from "../../../svg/Untitled (1).svg";
 import { useScrollFadeIn } from "../../../hooks";
 
 const ProItem = {
@@ -49,20 +53,20 @@ const ProItem = {
 const MY_ITEM = [
   {
     index: 0,
-    mainImg: idea,
+    mainImg: dog,
     name: "Grouping",
     tech: "React / NodeJs / MongDB",
   },
 
   {
     index: 1,
-    mainImg: idea,
+    mainImg: koreaColormap,
     name: "Promise-Election",
     tech: "React / HTML5 / CSS3 / JS",
   },
   {
     index: 2,
-    mainImg: idea,
+    mainImg: mayday,
     name: "Maydady",
     tech: "Android Studio / JAVA / Arduino",
   },
@@ -74,9 +78,10 @@ const MY_ITEM = [
   },
   {
     index: 3,
-    mainImg: idea,
-    name: "KilHyun-log",
+    mainImg: workroom8363,
+    name: "Workroom8363",
     tech: "React / JSX",
+    className: "circle",
   },
 ];
 
