@@ -6,7 +6,7 @@ import { useScrollFadeIn } from "../../../hooks";
 const Pro = {
   Container: styled.div`
     width: 80%;
-    height: 100%;
+    height: 150%;
     margin: 3rem auto 0;
   `,
   Header: styled.div`

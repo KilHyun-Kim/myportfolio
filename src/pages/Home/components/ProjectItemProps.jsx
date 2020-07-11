@@ -6,8 +6,8 @@ const ProItem = {
   ItemWrapper: styled.div`
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: 230px;
+    width: 250px;
+    height: 300px;
     margin-left: 0.15%;
     margin-right: 0.15%;
     margin: 0 auto;
@@ -15,8 +15,12 @@ const ProItem = {
     text-align: center;
     z-index: 0;
     /* border: 1px solid #000; */
-    border-radius: 4px;
+    border-radius: 15px;
     opacity: 0.8;
+    -webkit-box-shadow: 3px 5px 7px 3px rgba(0, 0, 0, 0.27);
+    box-shadow: 3px 5px 7px 3px rgba(0, 0, 0, 0.27);
+    padding: 3rem 2rem;
+    background-color: white;
     cursor: pointer;
     &:hover {
       opacity: 1;
@@ -32,10 +36,8 @@ const ProItem = {
     &:hover {
       transform: scale(1.1);
     }
-    .circle {
-      border-radius: 50%;
-    }
   `,
+
   ImageTitle: styled.div`
     width: 100%;
     height: 20%;
@@ -47,6 +49,9 @@ const ProItem = {
     }
   `,
   Title: styled.p`
+    border-top: 1px solid #ddd;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
     font-size: 1.2rem;
     font-weight: bold;
   `,
@@ -73,14 +78,16 @@ const ProjectItemProps = ({ value }) => {
     //
     <>
       <ProItem.ItemWrapper {...animatedItem[value.index]} onClick={openWindow}>
-        <ProItem.HiddenBlock></ProItem.HiddenBlock>
         <ProItem.ImageBlock>
-          <ProItem.Img
-            src={value.mainImg}
-            key={value.name}
-
-            // className={value.className}
-          />
+          {value.borderRadius ? (
+            <ProItem.Img
+              src={value.mainImg}
+              key={value.name}
+              style={{ borderRadius: "50%" }}
+            />
+          ) : (
+            <ProItem.Img src={value.mainImg} key={value.name} />
+          )}
         </ProItem.ImageBlock>
         <ProItem.ImageTitle>
           <ProItem.Title>{value.name}</ProItem.Title>

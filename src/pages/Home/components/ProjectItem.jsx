@@ -43,7 +43,7 @@ const ProItem = {
     font-weight: bold;
   `,
   BlackLine: styled.div`
-    margin: 1.5rem auto;
+    margin: 1rem auto;
     width: 25%;
     height: 3px;
     background-color: black;
@@ -82,6 +82,7 @@ const MY_ITEM = [
     name: "Workroom8363",
     tech: "React / JSX",
     className: "circle",
+    borderRadius: true,
   },
 ];
 

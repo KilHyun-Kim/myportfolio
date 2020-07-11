@@ -1,5 +1,5 @@
 import React from "react";
-import { About, Geography, Project } from "./components";
+import { About, Geography, Project, Footer } from "./components";
 import styled from "styled-components";
 import FixedContainer from "./components/FixedContainer";
 
@@ -15,6 +15,7 @@ const Home = () => {
       <About />
       <Geography />
       <Project />
+      <Footer />
       <FixedContainer />
     </>
   );
