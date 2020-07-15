@@ -82,10 +82,20 @@ const K = {
   `,
   WeatherWrapper: styled.div`
     position: absolute;
-    width: 100%;
+    background-color: #000;
+    width: 15%;
     height: 60%;
     top: -80%;
-    left: 0%;
+    left: 42.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    img {
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+    }
   `,
 };
 

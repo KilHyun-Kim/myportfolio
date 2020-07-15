@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import emailjs from "emailjs-com";
+import { FcCheckmark } from "react-icons/fc";
+import LastFooter from "./LastFooter";
 
 const F = {
   Container: styled.div`
     width: 100%;
-    height: 80%;
+    height: 100%;
+    padding-top: 3rem;
     background-color: #252934;
+    display: flex;
+    flex-direction: column;
   `,
   ContactWrapper: styled.div`
     width: 80%;
+    height: 70%;
     margin: 0 auto;
   `,
   Title: styled.div`
@@ -18,17 +24,19 @@ const F = {
   `,
   CenterP: styled.p`
     font-size: 3em;
+    color: white;
   `,
   Question: styled.h4`
     font-family: "Lato", sans-serif;
     color: #04c2c9;
+    letter-spacing: 1px;
   `,
 
-  BlackLine: styled.div`
+  WhiteLine: styled.div`
     margin: 1rem auto;
     width: 8%;
     height: 3px;
-    background-color: black;
+    background-color: white;
   `,
   FormContainer: styled.form`
     display: flex;
@@ -48,20 +56,42 @@ const F = {
     background-color: #1e242c;
     border: 0;
   `,
+  EmailSendButtonBlock: styled.div`
+    width: 100%;
+    text-align: right;
+    margin-top: 0.5rem;
+    position: relative;
+  `,
   EmailSendButton: styled.button`
     width: 30%;
     padding: 0.5rem 0;
-    border: 1px solid #04c2c9;
     border-radius: 15px;
-    color: #04c2c9;
+    color: white;
+    font-weight: bold;
+    background-color: #252934;
+    border: 1px solid #ffffff;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
     &:hover {
-      color: white;
+      color: white !important;
       background-color: #04c2c9;
+      text-shadow: none;
+      border: 1px solid #04c2c9;
     }
+  `,
+  SuccessEmail: styled.div`
+    position: absolute;
+    top: 110%;
+    color: #2ecc71;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: "Lato", sans-serif;
   `,
 };
 
 const Footer = () => {
+  const [email, setEmail] = useState(false);
+
   function sendEmail(e) {
     e.preventDefault();
 
@@ -74,7 +104,10 @@ const Footer = () => {
       )
       .then(
         (result) => {
-          console.log(result.text);
+          setEmail(true);
+          setTimeout(() => {
+            setEmail(false);
+          }, 5000);
         },
         (error) => {
           console.log(error.text);
@@ -89,37 +122,49 @@ const Footer = () => {
     }
   }
   return (
-    <F.Container>
-      <F.ContactWrapper>
-        <F.Title>
-          <F.CenterP>Contact</F.CenterP>
-          <F.BlackLine />
-          <F.Question>Have a question or want to work together?</F.Question>
-        </F.Title>
-        <F.FormContainer onSubmit={sendEmail}>
-          <input type="hidden" name="contact_number" />
-          <F.EmailInput
-            className="input-text"
-            type="text"
-            name="from_name"
-            placeholder="Name"
-          />
-          <F.EmailInput
-            className="input-text"
-            type="email"
-            name="user_email"
-            placeholder="e-mail"
-          />
-
-          <F.EmailTextArea
-            className="input-text"
-            name="message"
-            placeholder="message"
-          />
-          <F.EmailSendButton type="submit">보내기</F.EmailSendButton>
-        </F.FormContainer>
-      </F.ContactWrapper>
-    </F.Container>
+    <>
+      <F.Container>
+        <F.ContactWrapper>
+          <F.Title>
+            <F.CenterP>Contact</F.CenterP>
+            <F.WhiteLine />
+            <F.Question>Have a question or want to work together?</F.Question>
+          </F.Title>
+          <F.FormContainer onSubmit={sendEmail}>
+            <input type="hidden" name="contact_number" />
+            <F.EmailInput
+              className="input-text"
+              type="text"
+              name="from_name"
+              placeholder="Name"
+            />
+            <F.EmailInput
+              className="input-text"
+              type="email"
+              name="user_email"
+              placeholder="E-mail"
+            />
+            <F.EmailTextArea
+              className="input-text"
+              name="message"
+              placeholder="Message"
+            />
+            <F.EmailSendButtonBlock>
+              <F.EmailSendButton type="submit">SUBMIT</F.EmailSendButton>
+              {email ? (
+                <F.SuccessEmail>
+                  <FcCheckmark />
+                  &nbsp; 이메일을 성공적으로 보냈습니다.
+                </F.SuccessEmail>
+              ) : (
+                <></>
+              )}
+            </F.EmailSendButtonBlock>
+          </F.FormContainer>
+        </F.ContactWrapper>
+        <LastFooter />
+      </F.Container>
+    </>
   );
 };
 

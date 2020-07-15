@@ -5,6 +5,7 @@ import SlideImg from "./SlideImg";
 import idea from "../../../images/idea.png";
 import deleteSvg from "../../../svg/delete.svg";
 import pantagon from "../../../images/보라색육각형 (1).png";
+import cloud from "../../../images/구름쪼가리.jpg";
 
 const K = {
   Container: styled.div`
@@ -33,6 +34,7 @@ const K = {
   `,
   SliderWrapper: styled.div`
     width: 100%;
+    height: 55%;
     overflow: hidden;
     position: relative;
   `,
@@ -64,7 +66,7 @@ const K = {
     height: 30%;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 1% auto;
     width: 90%;
     font-family: "Raleway", sans-serif;
   `,
@@ -82,13 +84,32 @@ const K = {
     margin: 1.5rem 0 0;
     font-family: "Nanum Gothic", sans-serif;
   `,
+
   DeleteButtonWrapper: styled.div`
     width: 100%;
     height: 10%;
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: space-between;
     padding: 0 2rem;
     align-items: center;
+  `,
+  Link: styled.div`
+    display: flex;
+    width: 100%;
+    height: 50%;
+    color: #898cff;
+    &:hover {
+      text-decoration: underline;
+    }
+    a {
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: #898cff;
+    }
   `,
   DeleteButton: styled.button`
     width: 10%;
@@ -106,26 +127,7 @@ const onClick = () => {
   const fixed = document.querySelector(".fixed");
   fixed.style.visibility = "hidden";
 };
-// const wrap = K.SliderWrapper.children;
-// const slide = () => {
-//   console.log(wrap);
-// };
-// useEffect(() => {
-//   slide();
-// }, []);
-
-const FixedContainer = ({}) => {
-  const Value = {
-    Grouping: {
-      title: "Grouping",
-      tag: "Developer Study Group Web Page",
-      summary:
-        "Grouping은 개발자가 되고싶은, 주니어 개발자들에게 그룹 스터디, 프로젝트 팀원 모집, 어학 그룹 스터디를 하기위한 사람들을 모아주는 웹 페이지입니다.",
-      img1: idea,
-      img2: deleteSvg,
-      img3: pantagon,
-    },
-  };
+const Fixed = ({ test }) => {
   const TOTAL_SLIDES = 2;
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
@@ -154,9 +156,10 @@ const FixedContainer = ({}) => {
       <K.Content>
         <K.SliderWrapper>
           <K.Slider ref={slideRef}>
-            <SlideImg img={idea} />
-            <SlideImg img={deleteSvg} />
-            <SlideImg img={pantagon} />
+            {/* <p>{test}</p> */}
+            <SlideImg img={test.img1} />
+            <SlideImg img={test.img2} />
+            <SlideImg img={test.img3} />
           </K.Slider>
           <K.SlideButton>
             <K.Button onClick={prevSlide}>
@@ -168,11 +171,23 @@ const FixedContainer = ({}) => {
           </K.SlideButton>
         </K.SliderWrapper>
         <K.Explanation>
-          <K.Title>{Value.Grouping.title}</K.Title>
-          <K.Tag>{Value.Grouping.tag}</K.Tag>
-          <K.Summary>{Value.Grouping.summary}</K.Summary>
+          <K.Title>{test.title}</K.Title>
+          <K.Tag>{test.tag}</K.Tag>
+          <K.Summary>{test.summary}</K.Summary>
         </K.Explanation>
         <K.DeleteButtonWrapper>
+          <K.Link>
+            {test.link ? (
+              <>
+                <span>Link:&nbsp;</span>
+                <a href={test.link} target="_blank">
+                  {test.link}
+                </a>
+              </>
+            ) : (
+              <></>
+            )}
+          </K.Link>
           <K.DeleteButton onClick={onClick}>
             <img src={deleteSvg} alt="delete" />
           </K.DeleteButton>
@@ -183,4 +198,4 @@ const FixedContainer = ({}) => {
   );
 };
 
-export default FixedContainer;
+export default Fixed;

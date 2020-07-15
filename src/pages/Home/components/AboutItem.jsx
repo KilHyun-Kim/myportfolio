@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useScrollFadeIn } from "../../../hooks";
-import speed from "../../../images/speed.png";
+import patience from "../../../images/끈기.png";
 import communication from "../../../images/communication.png";
 import idea from "../../../images/idea.png";
 import bookLove from "../../../images/booklove.png";
@@ -19,7 +19,7 @@ const K = {
     width: 25%;
     /* padding: 3rem 2rem; */
     text-align: center;
-    background-color: #fbfbfb;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     font-family: "Ubuntu", sans-serif;
@@ -34,9 +34,11 @@ const K = {
     margin-bottom: 0.3rem;
   `,
   ItemDescription: styled.p`
+    margin: 0 auto;
+    width: 90%;
     font-size: 0.9rem;
     color: #616161;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
   `,
   ItemImageBox: styled.div`
     width: 130px;
@@ -58,25 +60,27 @@ const K = {
 
 const MY_ITEMS = [
   {
-    title: "Speed",
-    description: "제가 맡은 일은 최대한 신속하게 처리할 수 있습니다!",
-    image: speed,
+    title: "patience",
+    description1: "맡은 일은 끈기있게 도전하며,",
+    description2: " 포기하지 않습니다.",
+    image: patience,
   },
   {
     title: "Communication",
-    description:
-      "다양한 사람과 빠르게 친해지며,함께 헤쳐나가기위해 노력합니다.",
+    description1: "다양한 사람과 빠르게 친해지며,",
+    description2: "함께 헤쳐나가기위해 노력합니다.",
     image: communication,
   },
   {
     title: "Idea",
-    description:
-      "끊임없이 아이디어를 생각합니다. 창의적인 아이디어가 샘솟습니다.",
+    description1: "끊임없이 아이디어를 생각하며,",
+    description2: " 창의적인 아이디어가 샘솟습니다.",
     image: idea,
   },
   {
     title: "New Studying",
-    description: "새로움 접하기를 즐깁니다. 신선한 경험을 좋아합니다!",
+    description1: "새로움 접하기를 즐기며,",
+    description2: "신선한 경험을 좋아합니다!",
     image: bookLove,
   },
 ];
@@ -96,7 +100,8 @@ const AboutItem = () => {
               <K.ItemImage src={item.image} />
             </K.ItemImageBox>
             <K.ItemTitle>{item.title}</K.ItemTitle>
-            <K.ItemDescription>{item.description}</K.ItemDescription>
+            <K.ItemDescription>{item.description1}</K.ItemDescription>
+            <K.ItemDescription>{item.description2}</K.ItemDescription>
           </K.ItemBox>
         ))}
       </K.ItemWrapper>

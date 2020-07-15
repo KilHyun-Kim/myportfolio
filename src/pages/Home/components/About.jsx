@@ -9,7 +9,7 @@ const K = {
     width: 80%;
     margin: 2rem auto;
     height: 130%;
-    background-color: #fbfbfb;
+    background-color: #ffffff;
   `,
 
   Header: styled.div`

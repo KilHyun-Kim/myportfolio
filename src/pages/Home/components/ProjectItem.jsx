@@ -1,12 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import idea from "../../../images/idea.png";
-import mayday from "../../../images/smilemaydayicon.png";
+import maydayImg from "../../../images/smilemaydayicon.png";
 import workroom8363 from "../../../images/workroom8363.png";
 import koreaColormap from "../../../images/koreaColormap.gif";
 import ProjectItemProps from "./ProjectItemProps";
-import dog from "../../../svg/Untitled (1).svg";
+import GroupingMark from "../../../images/GroupingMark.png";
+import KilHyunLogMark from "../../../images/KilLogMark.PNG";
 import { useScrollFadeIn } from "../../../hooks";
+import { useDispatch } from "react-redux";
+import {
+  grouping,
+  promise,
+  mayday,
+  kilog,
+  workroom,
+} from "../../../modules/fixed";
 
 const ProItem = {
   Wrapper: styled.div`
@@ -53,7 +62,7 @@ const ProItem = {
 const MY_ITEM = [
   {
     index: 0,
-    mainImg: dog,
+    mainImg: GroupingMark,
     name: "Grouping",
     tech: "React / NodeJs / MongDB",
   },
@@ -62,17 +71,17 @@ const MY_ITEM = [
     index: 1,
     mainImg: koreaColormap,
     name: "Promise-Election",
-    tech: "React / HTML5 / CSS3 / JS",
+    tech: "React / AWS / JS",
   },
   {
     index: 2,
-    mainImg: mayday,
+    mainImg: maydayImg,
     name: "Maydady",
     tech: "Android Studio / JAVA / Arduino",
   },
   {
     index: 3,
-    mainImg: idea,
+    mainImg: KilHyunLogMark,
     name: "KilHyun-log",
     tech: "React / JSX",
   },
@@ -91,23 +100,31 @@ const ProjectItem = () => {
     0: useScrollFadeIn("left", 1, 0.2),
     1: useScrollFadeIn("up", 1, 1),
   };
+
+  const dispatch = useDispatch();
+  const onChangeGrouping = () => dispatch(grouping());
+  const onChangePromise = () => dispatch(promise());
+  const onChangeMaday = () => dispatch(mayday());
+  const onChangeKilog = () => dispatch(kilog());
+  const onChnageWorkroom = () => dispatch(workroom());
+
   return (
     <>
       <ProItem.Wrapper>
         <ProItem.FirstBlock>
-          <ProjectItemProps value={MY_ITEM[0]} />
+          <ProjectItemProps value={MY_ITEM[0]} onChange={onChangeGrouping} />
         </ProItem.FirstBlock>
         <ProItem.SecondBlock>
-          <ProjectItemProps value={MY_ITEM[1]} />
+          <ProjectItemProps value={MY_ITEM[1]} onChange={onChangePromise} />
           <ProItem.Header {...animatedItem[0]}>
             <p>Project</p>
             <ProItem.BlackLine />
           </ProItem.Header>
-          <ProjectItemProps value={MY_ITEM[2]} />
+          <ProjectItemProps value={MY_ITEM[2]} onChange={onChangeMaday} />
         </ProItem.SecondBlock>
         <ProItem.ThirdBlock>
-          <ProjectItemProps value={MY_ITEM[3]} />
-          <ProjectItemProps value={MY_ITEM[4]} />
+          <ProjectItemProps value={MY_ITEM[3]} onChange={onChangeKilog} />
+          <ProjectItemProps value={MY_ITEM[4]} onChange={onChnageWorkroom} />
         </ProItem.ThirdBlock>
       </ProItem.Wrapper>
     </>

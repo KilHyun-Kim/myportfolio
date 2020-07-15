@@ -2,7 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { useScrollFadeIn } from "../../../hooks";
 import developer from "../../../images/developer.jpg";
-
+import kilhyun from "../../../images/일러스트.jpg";
+import html5 from "../../../images/HTML5.png";
+import css3 from "../../../images/CSS3.png";
+import js from "../../../images/JS.png";
+import react from "../../../images/React.png";
+import redux from "../../../images/redux.jpg";
+import aws from "../../../images/aws.png";
 const K = {
   Wrapper: styled.div`
     display: flex;
@@ -40,7 +46,7 @@ const K = {
       color: #82ccdd;
     }
     a {
-      color: #82ccdd;
+      color: #898cff;
     }
   `,
 
@@ -83,14 +89,15 @@ const AboutMe = () => {
     <K.Wrapper>
       <K.LeftWrapper {...animatedItem[0]}>
         <K.LeftImgBlock>
-          <K.LeftImg src={developer} />
+          <K.LeftImg src={kilhyun} />
         </K.LeftImgBlock>
         <K.LeftH1>Who's this guy?</K.LeftH1>
         <K.LeftP>
           저는 서울에 살고 있는 프론트엔드 신입 개발자입니다. 저는 웹에 대하여
           큰 열정을 갖고 있습니다.
-          <br /> <span>Responsive Web</span>,<span>React</span>,
-          <span>Server</span>,<span>DataBase</span>에 많은 관심이 있습니다.
+          <br /> <span>Responsive Web</span> , <span>React</span> ,
+          <span>Server</span> , <span>DataBase</span>
+          <br />등 많은 관심이 있습니다.
           <br />
           <a href="#">저와 함께 특별한 작품을 만들어봅시다.</a>
         </K.LeftP>
@@ -100,14 +107,14 @@ const AboutMe = () => {
           <K.RightH1>My Technic</K.RightH1>
         </K.RightH1Block>
         <K.ImgBlock {...useScrollFadeIn("up", 1, 0.7)}>
-          <img src={developer} alt="1" />
-          <img src={developer} alt="1" />
-          <img src={developer} alt="1" />
+          <img src={html5} alt="1" />
+          <img src={css3} alt="1" />
+          <img src={js} alt="1" />
         </K.ImgBlock>
         <K.ImgBlock {...useScrollFadeIn("up", 1, 0.9)}>
-          <img src={developer} alt="1" />
-          <img src={developer} alt="1" />
-          <img src={developer} alt="1" />
+          <img src={react} alt="1" />
+          <img src={redux} alt="1" />
+          <img src={aws} alt="1" />
         </K.ImgBlock>
       </K.RightWrapper>
     </K.Wrapper>

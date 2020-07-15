@@ -1,7 +1,7 @@
 import React from "react";
-import { About, Geography, Project, Footer } from "./components";
+import { Main, About, Geography, Project, Footer, Fixed } from "./components";
+import FixedContainer from "./containers/FixedContainer";
 import styled from "styled-components";
-import FixedContainer from "./components/FixedContainer";
 
 const TestDiv = styled.div`
   width: 100%;
@@ -11,7 +11,7 @@ const TestDiv = styled.div`
 const Home = () => {
   return (
     <>
-      {/* <TestDiv /> */}
+      <Main />
       <About />
       <Geography />
       <Project />

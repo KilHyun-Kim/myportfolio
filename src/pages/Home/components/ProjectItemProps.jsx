@@ -63,21 +63,32 @@ const ProItem = {
     width: 100%;
   `,
 };
-const ProjectItemProps = ({ value }) => {
+const titleName = [
+  "Grouping",
+  "PromiseElection",
+  "MayDay",
+  "KilHyunLog",
+  "WorkRoom8363",
+];
+const openWindow = () => {
+  const fixed = document.querySelector(".fixed");
+  fixed.style.visibility = "visible";
+};
+const ProjectItemProps = ({ value, onChange }) => {
   const animatedItem = {
     0: useScrollFadeIn("up", 1, 1.5),
     1: useScrollFadeIn("left", 1, 1.5),
     2: useScrollFadeIn("right", 1, 1.5),
     3: useScrollFadeIn("down", 1, 1.5),
   };
-  const openWindow = () => {
-    const fixed = document.querySelector(".fixed");
-    fixed.style.visibility = "visible";
-  };
+
   return (
-    //
     <>
-      <ProItem.ItemWrapper {...animatedItem[value.index]} onClick={openWindow}>
+      <ProItem.ItemWrapper
+        {...animatedItem[value.index]}
+        onClick={openWindow}
+        onMouseEnter={onChange}
+      >
         <ProItem.ImageBlock>
           {value.borderRadius ? (
             <ProItem.Img

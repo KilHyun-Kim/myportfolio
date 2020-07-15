@@ -9,7 +9,7 @@ const K = {
   Container: styled.div`
     width: 100%;
     height: 100%;
-    background-color: #fbfbfb;
+    background-color: #ffffff;
     display: flex;
     color: #ccc;
     letter-spacing: 4px;
