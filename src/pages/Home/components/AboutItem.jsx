@@ -79,7 +79,7 @@ const MY_ITEMS = [
   },
   {
     title: "New Studying",
-    description1: "새로움 접하기를 즐기며,",
+    description1: "새로운 스킬을 접하기 즐기며,",
     description2: "신선한 경험을 좋아합니다!",
     image: bookLove,
   },

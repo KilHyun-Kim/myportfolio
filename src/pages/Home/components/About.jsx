@@ -7,7 +7,7 @@ import AboutMe from "./AboutMe";
 const K = {
   Container: styled.div`
     width: 80%;
-    margin: 2rem auto;
+    margin: 2rem auto 0;
     height: 130%;
     background-color: #ffffff;
   `,
@@ -16,7 +16,7 @@ const K = {
     text-align: center;
     width: 100%;
     text-transform: uppercase;
-    padding: 1rem 0;
+    /* padding: 1rem 0; */
     font-size: 2rem;
     font-weight: bold;
   `,
@@ -28,7 +28,7 @@ const K = {
   `,
 };
 
-const About = () => {
+const About = ({ footerScroll }) => {
   const animatedItem = {
     0: useScrollFadeIn("down", 1, 0),
   };
@@ -39,7 +39,7 @@ const About = () => {
         <K.BlackLine />
       </K.Header>
       <AboutItem />
-      <AboutMe />
+      <AboutMe footerScroll={footerScroll} />
     </K.Container>
   );
 };

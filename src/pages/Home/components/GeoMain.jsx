@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import fullLine from "../../../images/합체.png";
 import { useScrollFadeIn } from "../../../hooks";
@@ -66,12 +66,13 @@ const K = {
     top: 130%;
     left: 0%;
     font-size: 1rem;
+    display: flex;
+    flex-direction: column;
     border-radius: 5px;
-
+    /* display: flex; */
     p {
       color: #000;
       height: 50%;
-      display: flex;
       justify-content: center;
       align-items: center;
       span {
@@ -102,12 +103,6 @@ const K = {
 // 내위치
 
 const GeoMain = ({ currentLatitude, currentLongitude }) => {
-  //   // STATIC한 값에대한 Lat,Lng
-
-  //   // STATIC한 값에대한 Lat, Lng => Counter 함수 변화값 보여주는곳
-  //   const [myLatitude, setMyLatitude] = useState(0);
-  //   const [myLongitude, setMyLongitude] = useState(0);
-
   // 새로받은 위치값에대한 값 => Counter 함수 변화값 보여주는곳
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
@@ -116,7 +111,6 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
   function numberCounter(target_number, setValue) {
     var count = 0;
     var diff = 0;
-    // var target_count = parseInt(target_number);
     var timer = null;
     const setValue2 = setValue;
     counter(count, diff, target_number, timer, setValue2);
@@ -149,9 +143,7 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
     };
     return position;
   }
-  // function ceilingCal(value) {
-  //   const value = Math.round();
-  // }
+
   const [calculate, setCalculate] = useState(0);
   const [distance, setDistance] = useState(false);
 
@@ -161,27 +153,33 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
     numberCounter(ceilingValue.longitude, setLongitude);
   }, [currentLatitude]);
 
-  const STATIC_LAT = 37.505;
-  const STATIC_LNG = 126.9391;
   const COORDS = "coords";
   const STATIC_LAT_HOURS = 37;
   const STATIC_LAT_MINUTES = 50;
-  const STATIC_LAT_SECONDS = 50;
+  const STATIC_LAT_SECONDS = 4905;
   const STATIC_LNG_HOURS = 126;
   const STATIC_LNG_MINUTES = 93;
-  const STATIC_LNG_SECONDS = 91;
+  const STATIC_LNG_SECONDS = 7002;
 
-  function calculatedDistance() {
-    const ValLat = JSON.parse(localStorage.getItem(COORDS)).latitude;
-    const ValLng = JSON.parse(localStorage.getItem(COORDS)).longitude;
-    const LatProcess = hourMinuteSec(ValLat, 2);
-    const LngProcess = hourMinuteSec(ValLng, 3);
+  function hourMinuteSec(Value, count) {
+    const Calculates = Math.round(Value * 1000000);
+    const hours = Number(String(Calculates).slice(0, count));
+    const minutes = Number(String(Calculates).slice(count, count + 2));
+    const seconds = Number(String(Calculates).slice(count + 2, count + 6));
+
+    const values = [hours, minutes, seconds];
+    return values;
+  }
+
+  function calculatedDistance(lat, lng) {
+    const LatProcess = hourMinuteSec(lat, 2);
+    const LngProcess = hourMinuteSec(lng, 3);
     const hoursLatDiff = Math.abs(STATIC_LAT_HOURS - LatProcess[0]);
     const minutesLatDiff = Math.abs(STATIC_LAT_MINUTES - LatProcess[1]);
-    const secondLatDiff = Math.abs(STATIC_LAT_SECONDS - LatProcess[2]);
+    const secondLatDiff = Math.abs(STATIC_LAT_SECONDS - LatProcess[2]) / 100;
     const hoursLngDiff = Math.abs(STATIC_LNG_HOURS - LngProcess[0]);
     const minutesLngDIff = Math.abs(STATIC_LNG_MINUTES - LngProcess[1]);
-    const secondsLngDIff = Math.abs(STATIC_LNG_SECONDS - LngProcess[2]);
+    const secondsLngDIff = Math.abs(STATIC_LNG_SECONDS - LngProcess[2]) / 100;
     const result = Math.sqrt(
       Math.pow(
         hoursLatDiff * 111.3 + minutesLatDiff * 1.86 + secondLatDiff * 0.031,
@@ -197,6 +195,7 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
         setDistance(true);
         return `${Math.round(result)}km`;
       }
+      setDistance(false);
       return `${Math.round(result)}km`;
     } else {
       return `${Math.round(result * 1000)}m`;
@@ -205,26 +204,21 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
 
   useEffect(() => {
     if (localStorage.getItem(COORDS)) {
-      const result = calculatedDistance();
+      const ValLat = JSON.parse(localStorage.getItem(COORDS)).latitude;
+      const ValLng = JSON.parse(localStorage.getItem(COORDS)).longitude;
+      const result = calculatedDistance(ValLat, ValLng);
       setCalculate(result);
-      console.log("b");
+    } else {
+      const result = calculatedDistance(currentLatitude, currentLongitude);
+      setCalculate(result);
     }
-  }, []);
-  function hourMinuteSec(Value, count) {
-    const Calculates = Math.round(Value * 10000);
-    const hours = Number(String(Calculates).slice(0, count));
-    const minutes = Number(String(Calculates).slice(count, count + 2));
-    const seconds = Number(String(Calculates).slice(count + 2, count + 4));
-    const values = [hours, minutes, seconds];
-    return values;
-  }
+  }, [currentLatitude]);
 
   const [temPla, setTemPla] = useState(0);
   const [icon, setIcon] = useState(0);
 
   const getWeather = (lat, lng) => {
     if (lat === undefined && lng === undefined) {
-      console.log("d");
       return;
     } else {
       fetch(
@@ -241,7 +235,6 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
             weather,
             icon,
           };
-          // console.log(temPlaObj);
           return setTemPla(temPlaObj);
         });
     }
@@ -249,15 +242,19 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
 
   useEffect(() => {
     const coordsValue = JSON.parse(localStorage.getItem(COORDS));
-    // console.log(coordsValue.latitude);
-    if (localStorage.getItem(COORDS)) {
+    if (coordsValue) {
       getWeather(coordsValue.latitude, coordsValue.longitude);
+    } else {
+      getWeather(currentLatitude, currentLongitude);
     }
-  }, []);
+  }, [currentLatitude]);
   useEffect(() => {
-    // console.log(temPla);
-    const iconValue = makeIcon(temPla.icon);
-    setIcon(iconValue);
+    if (temPla.icon) {
+      const iconValue = makeIcon(temPla.icon);
+      setIcon(iconValue);
+    } else {
+      setIcon(sun);
+    }
   }, [temPla]);
   const animatedItem = {
     0: useScrollFadeIn("up", 1, 0.2),
@@ -300,7 +297,7 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
         <p className="value">{latitude}</p>
         <K.YourWrapper {...animatedItem[1]}>
           <K.WeatherWrapper>
-            <img src={icon} />
+            <img src={icon} alt=" " />
           </K.WeatherWrapper>
           <p className="yourPosition">
             Your
@@ -308,13 +305,17 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
             Position
           </p>
           <K.DistanceWrapper {...animatedItem[2]}>
-            <p>
-              당신과의 거리는 <span>{calculate}</span> 입니다.
-            </p>
-            {distance ? (
-              <p>거리가 조금 멀지만 연락 기다리겠습니다.</p>
+            {currentLatitude ? (
+              <p>
+                당신과의 거리는 약 <span>{calculate}</span> 입니다.
+                {distance ? (
+                  <p>거리가 조금 멀지만 연락 기다리겠습니다.</p>
+                ) : (
+                  <p>제가 이동할 수 있는 충분한 거리군요!</p>
+                )}
+              </p>
             ) : (
-              <p>제가 이동할 수 있는 충분한 거리군요!</p>
+              <></>
             )}
           </K.DistanceWrapper>
         </K.YourWrapper>

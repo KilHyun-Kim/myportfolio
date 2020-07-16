@@ -52,18 +52,18 @@ const K = {
     }
   `,
 };
-const movePage = () => {
-  document.getElementById("about").focus();
-};
+// const movePage = () => {
+//   document.getElementById("about").focus();
+// };
 
-const Main = () => {
+const Main = ({ aboutScroll }) => {
   return (
     <K.MainContainer>
       <K.MainWrapper>
         <K.MainH1>Hello</K.MainH1>
         <K.MainH1> I'm Kil-Hyun Kim.</K.MainH1>
         <K.MainP>I wanna be a Front-end developer.</K.MainP>
-        <K.MainButton onClick={movePage}>view my portfolio</K.MainButton>
+        <K.MainButton onClick={aboutScroll}>view my portfolio</K.MainButton>
       </K.MainWrapper>
     </K.MainContainer>
   );

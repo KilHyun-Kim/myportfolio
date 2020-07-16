@@ -6,8 +6,8 @@ const ProItem = {
   ItemWrapper: styled.div`
     display: flex;
     flex-direction: column;
-    width: 250px;
-    height: 300px;
+    width: 200px;
+    height: 250px;
     margin-left: 0.15%;
     margin-right: 0.15%;
     margin: 0 auto;
@@ -63,23 +63,17 @@ const ProItem = {
     width: 100%;
   `,
 };
-const titleName = [
-  "Grouping",
-  "PromiseElection",
-  "MayDay",
-  "KilHyunLog",
-  "WorkRoom8363",
-];
+
 const openWindow = () => {
   const fixed = document.querySelector(".fixed");
   fixed.style.visibility = "visible";
 };
 const ProjectItemProps = ({ value, onChange }) => {
   const animatedItem = {
-    0: useScrollFadeIn("up", 1, 1.5),
-    1: useScrollFadeIn("left", 1, 1.5),
-    2: useScrollFadeIn("right", 1, 1.5),
-    3: useScrollFadeIn("down", 1, 1.5),
+    0: useScrollFadeIn("up", 1, 1),
+    1: useScrollFadeIn("left", 1, 1),
+    2: useScrollFadeIn("right", 1, 1),
+    3: useScrollFadeIn("down", 1, 1),
   };
 
   return (

@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { FiChevronsUp, FiInstagram } from "react-icons/fi";
 import { FaGithub, FaCodepen } from "react-icons/fa";
+import { useScrollFadeIn } from "../../../hooks";
+
 const F = {
   Container: styled.div`
     width: 100%;
@@ -16,7 +18,7 @@ const F = {
     position: absolute;
     top: -10%;
     width: 3%;
-    left: 49%;
+    left: 48.5%;
     height: 17%;
     border: 0;
     /* border-radius: 10px; */
@@ -98,15 +100,19 @@ const clickPageUp = () => {
   window.scrollTo(0, 0);
 };
 
-const LastFooter = () => {
+const LastFooter = ({ animate }) => {
+  const animatedItem = {
+    0: useScrollFadeIn("down", 1, 0.5),
+  };
+
   return (
-    <F.Container>
+    <F.Container {...animatedItem[0]}>
       <F.UpButton onClick={clickPageUp}>
         <FiChevronsUp />
       </F.UpButton>
       <F.SnsIconsBlock>
         {SNS_ICONS.map((item, index) => (
-          <F.SnsButtonBlock>
+          <F.SnsButtonBlock key={index}>
             <F.SnsButton
               key={index}
               href={item.href}

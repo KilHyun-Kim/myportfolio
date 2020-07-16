@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { useScrollFadeIn } from "../../../hooks";
-import developer from "../../../images/developer.jpg";
 import kilhyun from "../../../images/일러스트.jpg";
 import html5 from "../../../images/HTML5.png";
-import css3 from "../../../images/CSS3.png";
+import css3 from "../../../images/CSS3 (1).png";
 import js from "../../../images/JS.png";
 import react from "../../../images/React.png";
 import redux from "../../../images/redux.jpg";
@@ -45,8 +44,12 @@ const K = {
     span {
       color: #82ccdd;
     }
-    a {
+    b {
       color: #898cff;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   `,
 
@@ -79,7 +82,7 @@ const K = {
   `,
 };
 
-const AboutMe = () => {
+const AboutMe = ({ footerScroll }) => {
   const animatedItem = {
     0: useScrollFadeIn("right", 1, 0.5),
     1: useScrollFadeIn("left", 1, 0.5),
@@ -99,7 +102,7 @@ const AboutMe = () => {
           <span>Server</span> , <span>DataBase</span>
           <br />등 많은 관심이 있습니다.
           <br />
-          <a href="#">저와 함께 특별한 작품을 만들어봅시다.</a>
+          <b onClick={footerScroll}>저와 함께 특별한 작품을 만들어봅시다.</b>
         </K.LeftP>
       </K.LeftWrapper>
       <K.RightWrapper {...animatedItem[1]}>

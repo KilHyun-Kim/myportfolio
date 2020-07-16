@@ -33,7 +33,9 @@ const Geography = () => {
   };
   /* navigator.geolocation.getCurrentPosition 거부 했을 경우 */
   const handleGeoError = () => {
-    console.log("Can't access geo location.");
+    alert(
+      "지역 값을 허용하지 않았습니다.\n사용자의 위치를 알아낼 수 있도록 위치값을 허용해 주십시오."
+    );
   };
 
   const saveCoords = (coordsObj) => {
@@ -57,7 +59,6 @@ const Geography = () => {
 
   useEffect(() => {
     loadCoords();
-    console.log("a");
   }, []);
 
   return (

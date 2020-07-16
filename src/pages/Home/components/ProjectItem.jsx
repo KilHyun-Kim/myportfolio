@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import idea from "../../../images/idea.png";
 import maydayImg from "../../../images/smilemaydayicon.png";
 import workroom8363 from "../../../images/workroom8363.png";
 import koreaColormap from "../../../images/koreaColormap.gif";
@@ -98,7 +97,6 @@ const MY_ITEM = [
 const ProjectItem = () => {
   const animatedItem = {
     0: useScrollFadeIn("left", 1, 0.2),
-    1: useScrollFadeIn("up", 1, 1),
   };
 
   const dispatch = useDispatch();

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import emailjs from "emailjs-com";
 import { FcCheckmark } from "react-icons/fc";
 import LastFooter from "./LastFooter";
+import { useScrollFadeIn } from "../../../hooks";
 
 const F = {
   Container: styled.div`
@@ -121,16 +122,23 @@ const Footer = () => {
       el[i].value = "";
     }
   }
+
+  const animatedItem = {
+    0: useScrollFadeIn("up", 1, 0.5),
+    1: useScrollFadeIn("right", 1, 0.8),
+    2: useScrollFadeIn("right", 1, 0.9),
+    3: useScrollFadeIn("up", 1, 1.5),
+  };
   return (
     <>
       <F.Container>
         <F.ContactWrapper>
-          <F.Title>
+          <F.Title {...animatedItem[0]}>
             <F.CenterP>Contact</F.CenterP>
             <F.WhiteLine />
             <F.Question>Have a question or want to work together?</F.Question>
           </F.Title>
-          <F.FormContainer onSubmit={sendEmail}>
+          <F.FormContainer onSubmit={sendEmail} {...animatedItem[1]}>
             <input type="hidden" name="contact_number" />
             <F.EmailInput
               className="input-text"
@@ -149,7 +157,7 @@ const Footer = () => {
               name="message"
               placeholder="Message"
             />
-            <F.EmailSendButtonBlock>
+            <F.EmailSendButtonBlock {...animatedItem[2]}>
               <F.EmailSendButton type="submit">SUBMIT</F.EmailSendButton>
               {email ? (
                 <F.SuccessEmail>

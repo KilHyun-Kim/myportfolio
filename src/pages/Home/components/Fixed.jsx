@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { FcPrevious, FcNext } from "react-icons/fc";
 import SlideImg from "./SlideImg";
-import idea from "../../../images/idea.png";
 import deleteSvg from "../../../svg/delete.svg";
-import pantagon from "../../../images/보라색육각형 (1).png";
-import cloud from "../../../images/구름쪼가리.jpg";
 
 const K = {
   Container: styled.div`
@@ -30,7 +28,7 @@ const K = {
     flex-direction: column;
     -webkit-box-shadow: 3px 5px 7px 3px rgba(0, 0, 0, 0.27);
     box-shadow: 3px 5px 7px 3px rgba(0, 0, 0, 0.27);
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
   `,
   SliderWrapper: styled.div`
     width: 100%;
@@ -56,11 +54,16 @@ const K = {
     border-radius: 10px;
     font-size: 2rem;
     cursor: pointer;
-    &:hover {
-      transition: all 0.3s ease-in-out;
-      color: #fff;
-    }
   `,
+  WhiteButton: styled.button`
+    all: unset;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+  `,
+
   Explanation: styled.div`
     width: 100%;
     height: 30%;
@@ -81,6 +84,7 @@ const K = {
     border-bottom: 1px solid #ddd;
   `,
   Summary: styled.div`
+    font-size: 0.9rem;
     margin: 1.5rem 0 0;
     font-family: "Nanum Gothic", sans-serif;
   `,
@@ -90,7 +94,6 @@ const K = {
     height: 10%;
     display: flex;
     justify-content: space-between;
-    padding: 0 2rem;
     align-items: center;
   `,
   Link: styled.div`
@@ -98,6 +101,7 @@ const K = {
     width: 100%;
     height: 50%;
     color: #898cff;
+    margin-left: 2rem;
     &:hover {
       text-decoration: underline;
     }
@@ -147,7 +151,7 @@ const Fixed = ({ test }) => {
   };
 
   useEffect(() => {
-    slideRef.current.style.transition = "all 0.5s ease-in-out";
+    slideRef.current.style.transition = "all 0.3s ease-in-out";
     slideRef.current.style.transform = `translateY(-${currentSlide}00%)`;
   }, [currentSlide]);
   return (
@@ -162,12 +166,25 @@ const Fixed = ({ test }) => {
             <SlideImg img={test.img3} />
           </K.Slider>
           <K.SlideButton>
-            <K.Button onClick={prevSlide}>
-              <GrFormPrevious />
-            </K.Button>
-            <K.Button onClick={nextSlide}>
-              <GrFormNext />
-            </K.Button>
+            {test.whiteButton ? (
+              <>
+                <K.Button onClick={prevSlide}>
+                  <FcPrevious />
+                </K.Button>
+                <K.Button onClick={nextSlide}>
+                  <FcNext />
+                </K.Button>
+              </>
+            ) : (
+              <>
+                <K.WhiteButton onClick={prevSlide}>
+                  <GrFormPrevious />
+                </K.WhiteButton>
+                <K.WhiteButton onClick={nextSlide}>
+                  <GrFormNext />
+                </K.WhiteButton>
+              </>
+            )}
           </K.SlideButton>
         </K.SliderWrapper>
         <K.Explanation>
