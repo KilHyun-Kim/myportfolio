@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c0522e7c2e6ddb1e7f2d2266d4bd0c0d",
+    "revision": "70eaf05e1e5f47df4eaaefb3a665d955",
     "url": "/myportfolio/index.html"
   },
   {
-    "revision": "df1f56eb797e531159ba",
+    "revision": "7f0e6973231264ca54b1",
     "url": "/myportfolio/static/css/main.3367e054.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/myportfolio/static/js/2.c5a5a0df.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "df1f56eb797e531159ba",
-    "url": "/myportfolio/static/js/main.6a334c4b.chunk.js"
+    "revision": "7f0e6973231264ca54b1",
+    "url": "/myportfolio/static/js/main.a1d919e8.chunk.js"
   },
   {
     "revision": "da2e02db1e870a8bb8e5",
@@ -100,8 +100,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/myportfolio/static/media/koreaColormap.f31fd3c0.gif"
   },
   {
-    "revision": "8c884b7db2e2f19b4893c0909250400b",
-    "url": "/myportfolio/static/media/lightning-weather.8c884b7d.gif"
+    "revision": "fa211b3d976665584dc34e92d3f315fd",
+    "url": "/myportfolio/static/media/light-snowy-weather.fa211b3d.gif"
   },
   {
     "revision": "64862ca668d4d6eb49826385292202e9",
