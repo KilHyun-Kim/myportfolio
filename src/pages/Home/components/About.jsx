@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { useScrollFadeIn } from "../../../hooks";
-import AboutItem from "./AboutItem";
-import AboutMe from "./AboutMe";
+import AboutItems from "./AboutItems";
 
 const K = {
   Container: styled.div`
-    width: 80%;
-    margin: 2rem auto 0;
-    height: 130%;
+    width: 100%;
+    padding: 1rem 0 0;
+    margin: 0 auto;
+    height: 100%;
     background-color: #ffffff;
   `,
 
@@ -16,30 +16,29 @@ const K = {
     text-align: center;
     width: 100%;
     text-transform: uppercase;
-    /* padding: 1rem 0; */
     font-size: 2rem;
     font-weight: bold;
+    font-family: "Ubuntu", sans-serif;
   `,
   BlackLine: styled.div`
-    margin: 1.5rem auto;
+    margin: 1rem auto;
     width: 5%;
     height: 3px;
     background-color: black;
   `,
 };
 
-const About = ({ footerScroll }) => {
+const About = ({ footerScroll, className }) => {
   const animatedItem = {
     0: useScrollFadeIn("down", 1, 0),
   };
   return (
-    <K.Container>
+    <K.Container className={className}>
       <K.Header {...animatedItem[0]}>
         <h1>about</h1>
         <K.BlackLine />
       </K.Header>
-      <AboutItem />
-      <AboutMe footerScroll={footerScroll} />
+      <AboutItems footerScroll={footerScroll} />
     </K.Container>
   );
 };

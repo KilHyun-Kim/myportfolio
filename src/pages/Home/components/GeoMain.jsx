@@ -7,7 +7,7 @@ import showerRain from "../../../images/rainy-weather.gif";
 import rain from "../../../images/torrential-rain-weather.gif";
 import sun from "../../../images/sun-weather.gif";
 import stomy from "../../../images/stormy-weather.gif";
-import lightsnowy from "../../../images/lightning-weather.gif";
+import lightsnowy from "../../../images/light-snowy-weather.gif";
 import haze from "../../../images/haze-weather.gif";
 
 const API_KEY = "01478b1046e705bec4b4eeda91b15f7b";
@@ -18,21 +18,23 @@ const K = {
     justify-content: space-between;
     align-items: center;
     width: 90%;
-    .intro_line {
-      height: 10%;
-    }
+    height: 100%;
     .intro_line2 {
-      height: 10%;
       transform: rotate(180deg);
     }
     .intro_line img,
     .intro_line2 img {
-      width: 100%;
+    }
+  `,
+  introLine: styled.div`
+    height: 10%;
+    img {
       height: 100%;
     }
   `,
   ValueWrapper: styled.div`
     width: 100%;
+    height: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -46,14 +48,28 @@ const K = {
       color: #000;
       font-size: 4rem;
       justify-content: center;
-      width: 33.3%;
+      width: 100%;
     }
+  `,
+  Main: styled.div`
+    position: relative;
+    height: 40%;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   `,
   YourWrapper: styled.div`
     width: 33.3%;
+    height: 100%;
     margin: 0 auto;
     position: relative;
     font-family: "Ubuntu", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    div {
+    }
     p {
       color: #000;
       width: 100%;
@@ -61,10 +77,9 @@ const K = {
   `,
   DistanceWrapper: styled.div`
     position: absolute;
+    top: 80%;
     width: 100%;
-    height: 60%;
-    top: 130%;
-    left: 0%;
+    height: 25%;
     font-size: 1rem;
     display: flex;
     flex-direction: column;
@@ -82,21 +97,34 @@ const K = {
     }
   `,
   WeatherWrapper: styled.div`
-    position: absolute;
-    background-color: #000;
-    width: 15%;
-    height: 60%;
-    top: -80%;
-    left: 42.5%;
+    position: relative;
+    width: 80%;
+    height: 10%;
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     border-radius: 50%;
     img {
-      width: 80%;
+      border: 3px solid #000;
+      width: 20%;
       height: 80%;
       border-radius: 50%;
     }
+  `,
+  WeatherComment: styled.div`
+    position: absolute;
+    top: 120%;
+    width: 100%;
+    height: 30%;
+    font-size: 1rem;
+    text-align: center;
+    p {
+    }
+  `,
+  LatLng: styled.div`
+    width: 30%;
   `,
 };
 
@@ -230,7 +258,6 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
         .then(function (json) {
           const weather = json.weather[0].main;
           const icon = json.weather[0].icon;
-          // console.log(weather);
           const temPlaObj = {
             weather,
             icon,
@@ -258,11 +285,16 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
   }, [temPla]);
   const animatedItem = {
     0: useScrollFadeIn("up", 1, 0.2),
-    1: useScrollFadeIn("up", 1, 0.4),
-    2: useScrollFadeIn("left", 1, 1.2),
+    1: useScrollFadeIn("up", 1, 0.6),
+    2: useScrollFadeIn("left", 1, 1),
+    3: useScrollFadeIn("left", 1, 1.2),
   };
+
+  const [weatherComment, setWeatherComment] = useState("");
+
   const makeIcon = (icon) => {
     if (icon === "01d" || icon === "01n") {
+      setWeatherComment("저의 미래처럼 창창한 날씨네요");
       return sun;
     } else if (
       icon === "02d" ||
@@ -272,16 +304,22 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
       icon === "04d" ||
       icon === "04n"
     ) {
+      setWeatherComment("코딩이 하고 싶은 날씨네요");
       return cloudy;
     } else if (icon === "9d" || icon === "9n") {
+      setWeatherComment("추적추적 비가 오네요");
       return showerRain;
     } else if (icon === "10d" || icon === "10n") {
+      setWeatherComment("이 정도 비로는 저를 막을 수 없죠");
       return rain;
     } else if (icon === "11d" || icon === "11n") {
+      setWeatherComment("이런 날씨에는 코딩이 잘 되던데");
       return stomy;
     } else if (icon === "13d" || icon === "13n") {
+      setWeatherComment("예쁜 눈이 내리네요");
       return lightsnowy;
     } else if (icon === "50d" || icon === "50n") {
+      setWeatherComment("이 정도 안개로는 저를 막을 수 없죠");
       return haze;
     } else {
       return;
@@ -290,40 +328,49 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
 
   return (
     <K.Container>
-      <div className="intro_line">
-        <img src={fullLine} alt="fullLine" />
-      </div>
-      <K.ValueWrapper {...animatedItem[0]}>
-        <p className="value">{latitude}</p>
-        <K.YourWrapper {...animatedItem[1]}>
-          <K.WeatherWrapper>
-            <img src={icon} alt=" " />
-          </K.WeatherWrapper>
-          <p className="yourPosition">
+      <K.ValueWrapper>
+        <K.LatLng>
+          <p className="value">{latitude}</p>
+        </K.LatLng>
+        <K.YourWrapper>
+          <K.introLine className="intro_line">
+            <img src={fullLine} alt="fullLine" />
+          </K.introLine>
+          <K.Main className="yourPosition" {...animatedItem[0]}>
             Your
             <br />
             Position
-          </p>
-          <K.DistanceWrapper {...animatedItem[2]}>
-            {currentLatitude ? (
-              <p>
-                당신과의 거리는 약 <span>{calculate}</span> 입니다.
-                {distance ? (
-                  <p>거리가 조금 멀지만 연락 기다리겠습니다.</p>
-                ) : (
-                  <p>제가 이동할 수 있는 충분한 거리군요!</p>
-                )}
-              </p>
-            ) : (
-              <></>
-            )}
-          </K.DistanceWrapper>
+            <K.DistanceWrapper {...animatedItem[1]}>
+              {currentLatitude ? (
+                <p>
+                  저와의 거리는 약 <span>{calculate}</span> 입니다
+                </p>
+              ) : (
+                <></>
+              )}
+              {distance ? (
+                <></>
+              ) : (
+                <p>출퇴근에 전혀 문제가 되지 않는 거리군요!</p>
+              )}
+            </K.DistanceWrapper>
+          </K.Main>
+
+          <K.WeatherWrapper {...animatedItem[2]}>
+            <img src={icon} alt=" " />
+            <K.WeatherComment {...animatedItem[3]}>
+              <p>{weatherComment}</p>
+            </K.WeatherComment>
+          </K.WeatherWrapper>
+
+          <K.introLine className="intro_line2">
+            <img src={fullLine} alt="fullLine" />
+          </K.introLine>
         </K.YourWrapper>
-        <p className="value">{longitude}</p>
+        <K.LatLng>
+          <p className="value">{longitude}</p>
+        </K.LatLng>
       </K.ValueWrapper>
-      <div className="intro_line2">
-        <img src={fullLine} alt="fullLine" />
-      </div>
     </K.Container>
   );
 };

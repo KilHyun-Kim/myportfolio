@@ -11,6 +11,8 @@ const K = {
     align-items: center;
     writing-mode: vertical-rl;
     justify-content: space-around;
+    color: #000;
+
     p {
       width: 30%;
       justify-content: center;

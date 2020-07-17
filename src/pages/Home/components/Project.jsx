@@ -5,8 +5,9 @@ import ProjectItem from "./ProjectItem";
 const Pro = {
   Container: styled.div`
     width: 80%;
-    height: 170%;
-    margin: 3rem auto 0;
+    height: 100%;
+    margin: 0 auto;
+    font-family: "Ubuntu", sans-serif;
   `,
   Header: styled.div`
     text-align: center;
@@ -24,12 +25,12 @@ const Pro = {
   `,
   ItemWrapper: styled.div`
     width: 90%;
-    margin: 5% auto 0;
+    margin: 0 auto;
   `,
 };
-const Project = () => {
+const Project = ({ className }) => {
   return (
-    <Pro.Container>
+    <Pro.Container className={className}>
       <Pro.ItemWrapper>
         <ProjectItem />
       </Pro.ItemWrapper>

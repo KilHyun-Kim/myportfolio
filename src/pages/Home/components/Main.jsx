@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import mainBack from "../../../images/mainBackground.jpg";
+import { useScrollFadeIn } from "../../../hooks";
 
 const K = {
   MainContainer: styled.div`
@@ -10,6 +11,7 @@ const K = {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: relative;
+    font-family: "Ubuntu", sans-serif;
   `,
   MainWrapper: styled.div`
     width: 40%;
@@ -26,13 +28,14 @@ const K = {
   MainH1: styled.h1`
     width: 80%;
     margin: 0 auto;
-    font-size: 3rem;
+    font-size: 3.5rem;
   `,
   MainP: styled.p`
-    font-size: 1.5rem;
-    color: #ddd;
-    text-align: center;
-    margin: 0.5rem;
+    width: 80%;
+    font-size: 1.8rem;
+    color: #999;
+    /* text-align: center; */
+    margin: 0rem auto;
   `,
   MainButton: styled.button`
     border: 0;
@@ -41,10 +44,12 @@ const K = {
     cursor: pointer;
     color: white;
     font-size: 1.5rem;
-    margin: 2rem auto;
+    margin: 1.2rem auto;
     border-radius: 10px;
     padding: 1rem 0;
     position: relative;
+    font-family: "Ubuntu", sans-serif;
+
     transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 
     &:hover {
@@ -56,14 +61,21 @@ const K = {
 //   document.getElementById("about").focus();
 // };
 
-const Main = ({ aboutScroll }) => {
+const Main = ({ aboutScroll, className }) => {
+  const animatedItem = {
+    0: useScrollFadeIn("down", 2, 0.7),
+    1: useScrollFadeIn("down", 2, 1),
+    2: useScrollFadeIn("right", 2, 1.5),
+  };
   return (
-    <K.MainContainer>
+    <K.MainContainer className={className}>
       <K.MainWrapper>
-        <K.MainH1>Hello</K.MainH1>
-        <K.MainH1> I'm Kil-Hyun Kim.</K.MainH1>
-        <K.MainP>I wanna be a Front-end developer.</K.MainP>
-        <K.MainButton onClick={aboutScroll}>view my portfolio</K.MainButton>
+        <K.MainH1 {...animatedItem[0]}>Hello</K.MainH1>
+        <K.MainH1 {...animatedItem[1]}>
+          I'm <span>Kil-Hyun Kim</span>
+        </K.MainH1>
+        <K.MainP {...animatedItem[2]}>I wanna be a Front-end developer</K.MainP>
+        <K.MainButton onClick={aboutScroll}>View my portfolio</K.MainButton>
       </K.MainWrapper>
     </K.MainContainer>
   );

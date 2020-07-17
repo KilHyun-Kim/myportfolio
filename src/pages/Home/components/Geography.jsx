@@ -17,7 +17,7 @@ const K = {
 };
 const COORDS = "coords";
 
-const Geography = () => {
+const Geography = ({ className }) => {
   const [currentLatLong, setCurrentLatLong] = useState(0);
 
   /* navigator.geolocation.getCurrentPosition 수락했을경우 */
@@ -62,7 +62,7 @@ const Geography = () => {
   }, []);
 
   return (
-    <K.Container>
+    <K.Container className={className}>
       <GeographyLeft />
       <GeoMain
         currentLatitude={currentLatLong.latitude}

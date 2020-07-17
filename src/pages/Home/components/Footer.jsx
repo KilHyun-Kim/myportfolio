@@ -9,10 +9,11 @@ const F = {
   Container: styled.div`
     width: 100%;
     height: 100%;
-    padding-top: 3rem;
-    background-color: #252934;
+    /* padding-top: 3rem; */
+    background-color: white;
     display: flex;
     flex-direction: column;
+    font-family: "Ubuntu", sans-serif;
   `,
   ContactWrapper: styled.div`
     width: 80%;
@@ -25,7 +26,7 @@ const F = {
   `,
   CenterP: styled.p`
     font-size: 3em;
-    color: white;
+    color: black;
   `,
   Question: styled.h4`
     font-family: "Lato", sans-serif;
@@ -37,7 +38,7 @@ const F = {
     margin: 1rem auto;
     width: 8%;
     height: 3px;
-    background-color: white;
+    background-color: black;
   `,
   FormContainer: styled.form`
     display: flex;
@@ -49,13 +50,15 @@ const F = {
   `,
   EmailInput: styled.input`
     height: 10%;
-    background-color: #1e242c;
+    background-color: #f1f2f6;
     border: 0;
+    font-family: "Ubuntu", sans-serif;
   `,
   EmailTextArea: styled.textarea`
     height: 60%;
-    background-color: #1e242c;
+    background-color: #f1f2f6;
     border: 0;
+    font-family: "Ubuntu", sans-serif;
   `,
   EmailSendButtonBlock: styled.div`
     width: 100%;
@@ -64,19 +67,22 @@ const F = {
     position: relative;
   `,
   EmailSendButton: styled.button`
+    font-family: "Ubuntu", sans-serif;
+
     width: 30%;
-    padding: 0.5rem 0;
+    height: 35px;
     border-radius: 15px;
     color: white;
     font-weight: bold;
-    background-color: #252934;
-    border: 1px solid #ffffff;
+    background-color: #04c2c9;
+    border: 1px solid #04c2c9;
     transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+    font-size: 0.8rem;
     &:hover {
       color: white !important;
-      background-color: #04c2c9;
       text-shadow: none;
       border: 1px solid #04c2c9;
+      font-size: 0.9rem;
     }
   `,
   SuccessEmail: styled.div`
@@ -90,7 +96,7 @@ const F = {
   `,
 };
 
-const Footer = () => {
+const Footer = ({ className }) => {
   const [email, setEmail] = useState(false);
 
   function sendEmail(e) {
@@ -131,7 +137,7 @@ const Footer = () => {
   };
   return (
     <>
-      <F.Container>
+      <F.Container className={className}>
         <F.ContactWrapper>
           <F.Title {...animatedItem[0]}>
             <F.CenterP>Contact</F.CenterP>

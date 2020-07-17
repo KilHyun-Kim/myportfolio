@@ -6,8 +6,8 @@ const ProItem = {
   ItemWrapper: styled.div`
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: 250px;
+    width: 110px;
+    height: 110px;
     margin-left: 0.15%;
     margin-right: 0.15%;
     margin: 0 auto;
@@ -49,16 +49,19 @@ const ProItem = {
     }
   `,
   Title: styled.p`
+    width: 100%;
+    height: 100%;
+    font-size: 0.83rem;
     border-top: 1px solid #ddd;
-    margin-top: 0.5rem;
     padding-top: 0.5rem;
-    font-size: 1.2rem;
     font-weight: bold;
   `,
   Tech: styled.p`
-    font-size: 0.8rem;
+    font-size: 0.6rem;
   `,
   HiddenBlock: styled.div`
+    font-family: "Fredoka One", cursive;
+
     position: fixed;
     width: 100%;
   `,

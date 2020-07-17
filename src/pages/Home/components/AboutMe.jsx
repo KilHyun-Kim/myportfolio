@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useScrollFadeIn } from "../../../hooks";
-import kilhyun from "../../../images/일러스트.jpg";
 import html5 from "../../../images/HTML5.png";
 import css3 from "../../../images/CSS3 (1).png";
 import js from "../../../images/JS.png";
@@ -15,7 +14,7 @@ const K = {
     margin-top: 3rem;
   `,
   LeftWrapper: styled.div`
-    width: 30%;
+    width: 100%;
     height: 100%;
     text-align: center;
   `,
@@ -54,8 +53,8 @@ const K = {
   `,
 
   RightWrapper: styled.div`
-    width: 30%;
-    height: 100%;
+    width: 100%;
+    height: 50%;
 
     text-align: center;
   `,
@@ -71,50 +70,27 @@ const K = {
     padding: 1rem;
   `,
   ImgBlock: styled.div`
-    width: 100%;
+    width: 10 0%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-around;
-    height: 100%;
-    margin-top: 2rem;
+    height: 40%;
     img {
-      width: 30%;
+      width: 23%;
     }
   `,
 };
 
-const AboutMe = ({ footerScroll }) => {
-  const animatedItem = {
-    0: useScrollFadeIn("right", 1, 0.5),
-    1: useScrollFadeIn("left", 1, 0.5),
-  };
-
+const AboutMe = () => {
   return (
     <K.Wrapper>
-      <K.LeftWrapper {...animatedItem[0]}>
-        <K.LeftImgBlock>
-          <K.LeftImg src={kilhyun} />
-        </K.LeftImgBlock>
-        <K.LeftH1>Who's this guy?</K.LeftH1>
-        <K.LeftP>
-          저는 서울에 살고 있는 프론트엔드 신입 개발자입니다. 저는 웹에 대하여
-          큰 열정을 갖고 있습니다.
-          <br /> <span>Responsive Web</span> , <span>React</span> ,
-          <span>Server</span> , <span>DataBase</span>
-          <br />등 많은 관심이 있습니다.
-          <br />
-          <b onClick={footerScroll}>저와 함께 특별한 작품을 만들어봅시다.</b>
-        </K.LeftP>
-      </K.LeftWrapper>
-      <K.RightWrapper {...animatedItem[1]}>
-        <K.RightH1Block>
-          <K.RightH1>My Technic</K.RightH1>
-        </K.RightH1Block>
-        <K.ImgBlock {...useScrollFadeIn("up", 1, 0.7)}>
+      <K.RightWrapper>
+        <K.ImgBlock {...useScrollFadeIn("right", 1, 0.3)}>
           <img src={html5} alt="1" />
           <img src={css3} alt="1" />
           <img src={js} alt="1" />
         </K.ImgBlock>
-        <K.ImgBlock {...useScrollFadeIn("up", 1, 0.9)}>
+        <K.ImgBlock {...useScrollFadeIn("right", 1, 0.4)}>
           <img src={react} alt="1" />
           <img src={redux} alt="1" />
           <img src={aws} alt="1" />

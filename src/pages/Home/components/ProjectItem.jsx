@@ -25,19 +25,18 @@ const ProItem = {
   `,
   FirstBlock: styled.div`
     width: 25%;
-    margin: 0 auto;
+    margin: 2rem auto 0;
     text-align: center;
   `,
   SecondBlock: styled.div`
-    width: 80%;
-    margin: 0 auto;
+    width: 60%;
+    margin: 1rem auto 2rem;
     display: flex;
     justify-content: space-around;
   `,
   ThirdBlock: styled.div`
-    width: 70%;
-    margin: 3rem auto 0;
-
+    width: 50%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-around;
   `,
@@ -75,7 +74,7 @@ const MY_ITEM = [
   {
     index: 2,
     mainImg: maydayImg,
-    name: "Maydady",
+    name: "Mayday",
     tech: "Android Studio / JAVA / Arduino",
   },
   {
