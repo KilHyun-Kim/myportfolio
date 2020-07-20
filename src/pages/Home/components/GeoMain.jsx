@@ -130,7 +130,7 @@ const K = {
 
 // 내위치
 
-const GeoMain = ({ currentLatitude, currentLongitude }) => {
+const GeoMain = ({ currentLatitude, currentLongitude, ChangeDegree }) => {
   // 새로받은 위치값에대한 값 => Counter 함수 변화값 보여주는곳
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
@@ -182,13 +182,9 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
   }, [currentLatitude]);
 
   const COORDS = "coords";
-  const STATIC_LAT_HOURS = 37;
-  const STATIC_LAT_MINUTES = 50;
-  const STATIC_LAT_SECONDS = 4905;
-  const STATIC_LNG_HOURS = 126;
-  const STATIC_LNG_MINUTES = 93;
-  const STATIC_LNG_SECONDS = 7002;
 
+  const STATIC_LATITUDE = ChangeDegree(37.505092);
+  const STATIC_LONGITUDE = ChangeDegree(126.939105);
   function hourMinuteSec(Value, count) {
     const Calculates = Math.round(Value * 1000000);
     const hours = Number(String(Calculates).slice(0, count));
@@ -196,18 +192,23 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
     const seconds = Number(String(Calculates).slice(count + 2, count + 6));
 
     const values = [hours, minutes, seconds];
+
     return values;
   }
 
   function calculatedDistance(lat, lng) {
     const LatProcess = hourMinuteSec(lat, 2);
     const LngProcess = hourMinuteSec(lng, 3);
-    const hoursLatDiff = Math.abs(STATIC_LAT_HOURS - LatProcess[0]);
-    const minutesLatDiff = Math.abs(STATIC_LAT_MINUTES - LatProcess[1]);
-    const secondLatDiff = Math.abs(STATIC_LAT_SECONDS - LatProcess[2]) / 100;
-    const hoursLngDiff = Math.abs(STATIC_LNG_HOURS - LngProcess[0]);
-    const minutesLngDIff = Math.abs(STATIC_LNG_MINUTES - LngProcess[1]);
-    const secondsLngDIff = Math.abs(STATIC_LNG_SECONDS - LngProcess[2]) / 100;
+
+    const StaticLatProcess = hourMinuteSec(STATIC_LATITUDE, 2);
+    const StaticLngProcess = hourMinuteSec(STATIC_LONGITUDE, 3);
+    const hoursLatDiff = Math.abs(StaticLatProcess[0] - LatProcess[0]);
+    const hoursLngDiff = Math.abs(StaticLngProcess[0] - LngProcess[0]);
+    const minutesLatDiff = Math.abs(StaticLatProcess[1] - LatProcess[1]);
+    const minutesLngDIff = Math.abs(StaticLngProcess[1] - LngProcess[1]);
+    const secondLatDiff = Math.abs(StaticLatProcess[2] - LatProcess[2]) / 100;
+    const secondsLngDIff = Math.abs(StaticLngProcess[2] - LngProcess[2]) / 100;
+
     const result = Math.sqrt(
       Math.pow(
         hoursLatDiff * 111.3 + minutesLatDiff * 1.86 + secondLatDiff * 0.031,
@@ -218,15 +219,16 @@ const GeoMain = ({ currentLatitude, currentLongitude }) => {
           2
         )
     );
-    if (result > 1) {
-      if (result > 200) {
-        setDistance(true);
-        return `${Math.round(result)}km`;
-      }
+    const result2 = result * 1000;
+    if (result2 < 1000) {
       setDistance(false);
-      return `${Math.round(result)}km`;
+      return `${Math.round(result2)}m`;
     } else {
-      return `${Math.round(result * 1000)}m`;
+      if (result2 > 200000) {
+        setDistance(true);
+        return `${Math.round(result2 / 1000)}km`;
+      }
+      return `${Math.round(result2 / 1000)}km`;
     }
   }
 

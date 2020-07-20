@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
 import GeographyLeft from "./GeographyLeft";
 import GeographyRight from "./GeographyRight";
 import GeoMain from "./GeoMain";
@@ -17,6 +16,15 @@ const K = {
 };
 const COORDS = "coords";
 
+function ChangeDegree(value) {
+  const degree = Math.floor(value);
+  const first = (value % 1) * 60;
+  const minutes = Math.floor(first);
+  const second =
+    Math.floor(Number((first - minutes).toFixed(6)) * 60 * 100) / 1000000;
+
+  return Number((degree + minutes / 100 + second).toFixed(6));
+}
 const Geography = ({ className }) => {
   const [currentLatLong, setCurrentLatLong] = useState(0);
 
@@ -24,9 +32,13 @@ const Geography = ({ className }) => {
   const handleGeoSuccess = (position) => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
+    console.log(latitude, longitude, "?");
+    const changeLatitude = ChangeDegree(latitude);
+    const changeLongitude = ChangeDegree(longitude);
+
     const coordsObj = {
-      latitude: latitude,
-      longitude: longitude,
+      latitude: changeLatitude,
+      longitude: changeLongitude,
     };
     setCurrentLatLong(coordsObj);
     saveCoords(coordsObj);
@@ -67,6 +79,7 @@ const Geography = ({ className }) => {
       <GeoMain
         currentLatitude={currentLatLong.latitude}
         currentLongitude={currentLatLong.longitude}
+        ChangeDegree={ChangeDegree}
       />
       <GeographyRight />
     </K.Container>

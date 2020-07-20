@@ -20,22 +20,27 @@ const ProItem = {
   Wrapper: styled.div`
     display: flex;
     flex-direction: column;
-    width: 100%;
-    justify-content: center;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    justify-content: space-between;
   `,
   FirstBlock: styled.div`
-    width: 25%;
-    margin: 2rem auto 0;
+    width: 45%;
+    height: 25%;
+    margin: 1rem auto 0;
     text-align: center;
   `,
   SecondBlock: styled.div`
-    width: 60%;
+    width: 70%;
+    height: 25%;
     margin: 1rem auto 2rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   `,
   ThirdBlock: styled.div`
-    width: 50%;
+    width: 45%;
+    height: 25%;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
@@ -48,6 +53,9 @@ const ProItem = {
     align-items: center;
     font-size: 2rem;
     font-weight: bold;
+  `,
+  P: styled.p`
+    margin: 0 4rem;
   `,
   BlackLine: styled.div`
     margin: 1rem auto;
@@ -114,7 +122,7 @@ const ProjectItem = () => {
         <ProItem.SecondBlock>
           <ProjectItemProps value={MY_ITEM[1]} onChange={onChangePromise} />
           <ProItem.Header {...animatedItem[0]}>
-            <p>Project</p>
+            <ProItem.P>Project</ProItem.P>
             <ProItem.BlackLine />
           </ProItem.Header>
           <ProjectItemProps value={MY_ITEM[2]} onChange={onChangeMaday} />

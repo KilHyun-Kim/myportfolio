@@ -6,8 +6,8 @@ const ProItem = {
   ItemWrapper: styled.div`
     display: flex;
     flex-direction: column;
-    width: 110px;
-    height: 110px;
+    width: 30%;
+    height: 100%;
     margin-left: 0.15%;
     margin-right: 0.15%;
     margin: 0 auto;
@@ -28,11 +28,12 @@ const ProItem = {
     }
   `,
   ImageBlock: styled.div`
-    height: 80%;
+    width: 100%;
+    height: 80px;
   `,
   Img: styled.img`
-    width: 90%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
     &:hover {
       transform: scale(1.1);
     }

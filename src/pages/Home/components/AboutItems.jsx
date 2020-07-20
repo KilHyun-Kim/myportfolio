@@ -72,6 +72,7 @@ const AboutItems = ({ footerScroll }) => {
           <br /> <span>Responsive Web</span>, <span>React</span>,{" "}
           <span>Server</span>, <span>DataBase</span>에 많은 관심이 있습니다
           <br />
+          아래를 클릭하면 저에게 Contact 할 수 있습니다.
           <br />
           <b onClick={footerScroll}>저와 함께 특별한 작품을 만들어 볼까요?</b>
         </A.LeftP>

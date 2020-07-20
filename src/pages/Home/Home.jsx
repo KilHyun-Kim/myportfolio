@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Main, About, Geography, Project, Footer } from "./components";
 import FixedContainer from "./containers/FixedContainer";
 
@@ -35,13 +35,13 @@ const Home = () => {
       }
     } else if (elm[1] === target) {
       if (delta < 0) {
-        scrollToRef(geoRef);
+        scrollToRef(proRef);
       } else if (delta > 0) {
         scrollToRef(mainRef);
       }
     } else if (elm[2] === target) {
       if (delta < 0) {
-        scrollToRef(proRef);
+        scrollToRef(geoRef);
       } else if (delta > 0) {
         scrollToRef(aboutRef);
       }
@@ -49,13 +49,13 @@ const Home = () => {
       if (delta < 0) {
         scrollToRef(footerRef);
       } else if (delta > 0) {
-        scrollToRef(geoRef);
+        scrollToRef(proRef);
       }
     } else if (elm[4] === target) {
       if (delta < 0) {
         return;
       } else if (delta > 0) {
-        scrollToRef(proRef);
+        scrollToRef(geoRef);
       }
     }
   };
@@ -68,6 +68,18 @@ const Home = () => {
       }
     };
   }, []);
+  const [width, setWidth] = useState(false);
+
+  useEffect(() => {
+    if (window.outerWidth < 900) {
+      setWidth(true);
+    }
+  }, []);
+  useEffect(() => {
+    if (width) {
+      alert("모바일 버전은 작업 중입니다.");
+    }
+  }, [width]);
 
   return (
     <>
@@ -75,10 +87,10 @@ const Home = () => {
       <Main aboutScroll={aboutScroll} className="block" />
       <div ref={aboutRef}></div>
       <About footerScroll={footerScroll} className="block" />
-      <div ref={geoRef}></div>
-      <Geography className="block" />
       <div ref={proRef}></div>
       <Project className="block" />
+      <div ref={geoRef}></div>
+      <Geography className="block" />
       <div ref={footerRef}></div>
       <Footer className="block" />
       <FixedContainer />

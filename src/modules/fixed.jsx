@@ -35,6 +35,7 @@ const initialState = {
     title: "",
     tag: "",
     summary: "",
+    summary2: "",
   },
 };
 
@@ -46,9 +47,11 @@ const fixed = handleActions(
         img2: GroupingSecond,
         img3: GroupingThird,
         title: "Grouping",
-        tag: "Developer Study Group Web Page",
+        tag: "Developer Study Group Web Page ( 제작중 ) ",
         summary:
-          "Grouping은 개발자가 되고싶은, 주니어 개발자들에게 그룹 스터디, 프로젝트 팀원 모집, 어학 그룹 스터디를 하기위한 사람들을 모아주는 웹 페이지입니다. 앞으로 서버, 데이터베이스를 더 공부하여 꼭 완성할 것입니다.",
+          "서울에 올라와 스터디그룹, 디자이너, 백엔드 개발자등 많은 사람을 만나며 다양한 프로젝트를 진행하고 싶었습니다. 그러나 개발자를 위해 제대로된 모이는 사이트가 없다고 판단하여, 제가 직접 만들어보자라고 생각하여 제작을 시작하게 되었습니다.",
+        summary2:
+          "제가 제일 관심있는 React와 styled-components를 사용하였고, 사용자 관리와 글 목록을 구현 하기 위하여 Server 와 DataBase 가 필요하였고, 서버언어는 Node.js, 서버는 접근성이 편리하며, 클라우드 웹 서비스인 AWS(EC2)를 사용하였고, DB는 AWS(RDS)를 사용할것 입니다.",
         whiteButton: true,
       },
     }),
@@ -60,7 +63,11 @@ const fixed = handleActions(
         title: "Promise",
         tag: "This is the SPA for parliamentary elections",
         summary:
-          "Promise-Election은 2020.4.15 국회의원 선거에대한 각 후보들의 공약 정보를 제공하기 위해 만든 SPA(Single Page Application) 사이트입니다.",
+          "Algoppobja는 2020.4.15 국회의원 선거에대한 각 후보들의 정보들이 너무 복잡하여서 한눈에 들어오지 않아 오로지 공약 정보를 간단하게 보여주고 싶어서 제작했던 SPA(Single Page Application)입니다.",
+        summary2:
+          "React를 사용하고 이미지에 링크를 주기 위하여 <map>,<area> 태그를 활용하였고, 반응형 웹을 활용하여 스마트폰으로 확인할 수 있도록 작업하였고, 직접 국회의원 후보에게 연락을 하여서 공약을 받아서 정보를 입력해봤습니다.",
+        link:
+          "http://kilikili-algoppobja-test.s3-website.ap-northeast-2.amazonaws.com/",
       },
     }),
     [MAYDAY]: (state, action) => ({
@@ -69,9 +76,11 @@ const fixed = handleActions(
         img2: MaydaySecond,
         img3: MaydayThird,
         title: "MAYDAY",
-        tag: "Applications for emergencies",
+        tag: "Applications for emergencies <캡스톤 디자인 수상작>",
         summary:
-          "<캡스톤 디자인 수상작> MayDay는 수많은 긴급상황에 대처하기 위해 빠른 신고와 GPS를 통하여 가까운 기관을 알려주고, 다양한 도움을 주는 어플리케이션 입니다.",
+          "총 6명의 팀원으로 진행한 캡스톤 디자인 작품이였으며, 긴급구조 어플리케이션을 제작하였습니다.",
+        summary2:
+          "앱을 제작할 수 있는 Android Studio, 센서로 감지하여 값을 얻을 수 있는 Arduino, 센서의 케이스를 위한 3D 프린트, 사물인식, 모션을 감지할수 있는 기능 등을 제작하였습니다. 저는 기능과 UI를 맡아 제작에 힘썼습니다. 제작하며 팀워크와 다양한 기술을 익힐 수 있었고, 새로운 언어를 배우는 두려움도 떨쳐낼 수 있었습니다.",
         link: "https://www.youtube.com/watch?v=XFl4ZCeU_Ok&t=78s",
         whiteButton: true,
       },
@@ -84,7 +93,9 @@ const fixed = handleActions(
         title: "KILOG",
         tag: "The whole blog about me",
         summary:
-          "KilHyun-log 는 지금까지의 나의 행보와 나를 표현하는 나만의 블로그 입니다. 앞으로도 쭉 업그레이드를 해 나갈 예정입니다.",
+          "KilHyun-log 는 지금까지의 나의 프로젝트와 기술, 여행등 나를 표현하는 나만의 블로그 입니다. ",
+        summary2:
+          "React를 사용하였고, styed-components를 활용하여 전체적인 디자인을 만들었습니다. Github의 무료 호스팅 deploy를 활용하여 호스팅 되어있습니다.",
         link: "http://KilHyun-Kim.github.io/kilhyun-log",
       },
     }),
@@ -96,7 +107,9 @@ const fixed = handleActions(
         title: "WORKROOM",
         tag: "Leather workshop website",
         summary:
-          "대구에 위치한 WorkRoom8363 이라는 가죽공방 웹 사이트입니다. 맨 처음 도전했던 사이트인만큼 애정이 가는 사이트입니다. 저는 앞으로도 항상 발전할 것 입니다.",
+          "저의 첫 작품인 대구의 가죽공방 workroom8363의 홈페이지입니다. ",
+        summary2:
+          "HTML, CSS, Javascript, Node.js를 공부한 상태에서 시작하였습니다. 비록 완성 후 성공적 결과까지는 가지 못하였지만, 웹의 꿈을 갖게해준 페이지이기에 저에게는 소중한 사이트 입니다.",
       },
     }),
   },

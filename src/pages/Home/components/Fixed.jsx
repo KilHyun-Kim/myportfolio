@@ -84,8 +84,13 @@ const K = {
     border-bottom: 1px solid #ddd;
   `,
   Summary: styled.div`
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin: 1.5rem 0 0;
+    font-family: "Nanum Gothic", sans-serif;
+  `,
+  Summary2: styled.div`
+    font-size: 0.8rem;
+    margin: 0.5rem 0 0;
     font-family: "Nanum Gothic", sans-serif;
   `,
 
@@ -191,6 +196,7 @@ const Fixed = ({ test }) => {
           <K.Title>{test.title}</K.Title>
           <K.Tag>{test.tag}</K.Tag>
           <K.Summary>{test.summary}</K.Summary>
+          <K.Summary2>{test.summary2}</K.Summary2>
         </K.Explanation>
         <K.DeleteButtonWrapper>
           <K.Link>
